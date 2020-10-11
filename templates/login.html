@@ -5,7 +5,7 @@
 {% endblock title%}
 
 {% block content %}
-<div>
+<div style="padding: 10%;">
   <!--this prints flash messages-->
   {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -16,6 +16,7 @@
       {% endfor%}
     {% endif %}
   {% endwith %}
+  <!-- flash end-->
 <form action="#" method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>

@@ -17,10 +17,12 @@ def login():
 		userEmail = request.form["userEmail"]
 		# adding data to session
 		session["userEmail"] = userEmail
+		flash("Login Successful")
 		return redirect(url_for("dashboard"))
 	else:
 		# if user is already logged in
 		if "userEmail" in session:
+			flash("Already Logged In")
 			return redirect(url_for("dashboard"))
 		else:
 			pass

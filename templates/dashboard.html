@@ -5,6 +5,16 @@
 {% endblock title%}
 
 {% block content %}
-<h1>This is your Dashboard</h1>
+  <!--this prints flash messages-->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-success" role="alert">
+          {{msg}}
+        </div>
+      {% endfor%}
+    {% endif %}
+  {% endwith %}
+  <!-- flash end-->
   <h3>Welcome {{ usr }}</h3>
 {% endblock content%}
