@@ -15,7 +15,20 @@ def login():
 		session["userEmail"] = userEmail
 		return redirect(url_for("dashboard"))
 	else:
+		# if user is already logged in
+		if "userEmail" in session:
+			return redirect(url_for("dashboard"))
+		else:
+			pass
 		return render_template("login.html")
+
+@app.route('/logout')
+def logout():
+	# removing session data
+	# .pop function removes a key
+	session.pop("userEmail", None)
+	# after removing session redirect to
+	return redirect(url_for("login"))
 
 @app.route('/dashboard')
 def dashboard():
