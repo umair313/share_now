@@ -6,6 +6,16 @@
 
 {% block content %}
 <div>
+  <!--this prints flash messages-->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-success" role="alert">
+          {{msg}}
+        </div>
+      {% endfor%}
+    {% endif %}
+  {% endwith %}
 <form action="#" method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session, flash
 from datetime import timedelta
 
 app = Flask(__name__) 
@@ -28,9 +28,14 @@ def login():
 
 @app.route('/logout')
 def logout():
-	# removing session data
-	# .pop function removes a key
-	session.pop("userEmail", None)
+	if "userEmail" in session:
+		# removing session data
+		# .pop function removes a key
+		session.pop("userEmail", None)
+		# flash messages to inform use with category
+		flash("You have been logged out!", "info")
+	else:
+		flash("You are already logged out.")
 	# after removing session redirect to
 	return redirect(url_for("login"))
 
