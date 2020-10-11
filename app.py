@@ -1,7 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect, session
+from datetime import timedelta
 
 app = Flask(__name__) 
 app.secret_key = "sharenow"
+app.permanent_session_lifetime = timedelta(minutes=15)
 @app.route('/')
 def index():
 	return render_template("index.html")
@@ -9,6 +11,8 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
 	if request.method == "POST":
+		# this makes session permanent
+		session.permanent = True
 		# getting data from form
 		userEmail = request.form["userEmail"]
 		# adding data to session
